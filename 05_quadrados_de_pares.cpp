@@ -18,7 +18,7 @@ int main() {
     for (int i = 1; i <= N; ++i) {
         if (i % 2 == 0) {
             int quadrado = i * i;
-            cout << i << "^2 =  " << quadrado << endl;
+            cout << i << "^2 = " << quadrado << endl;
         }
     }
 
