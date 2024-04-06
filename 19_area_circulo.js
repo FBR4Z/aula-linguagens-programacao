@@ -1,16 +1,12 @@
-const readline = require('readline');
-
-const rl = readline.createInterface({
+const readline = require('readline').createInterface({
   input: process.stdin,
   output: process.stdout
 });
 
-rl.question('', (raio) => {
-  const PI = 3.14159;
-  //const area = PI * raio * raio;
-  const area = PI * raio ** 2;
-
+readline.question('', (raio) => {
+  const PI = 3.141592653589;
+  // raio = raio.toFixed(5)
+  const area = PI.toFixed(6) * parseFloat(raio) * parseFloat(raio);
   console.log(`A=${area.toFixed(4)}`);
-
-  rl.close();
+  readline.close();
 });
