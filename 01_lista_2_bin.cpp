@@ -26,6 +26,19 @@ vector<int> decimalParaBinario(int numero) {
     return binario;
 }
 
+// Função para contar a quantidade de 1s no vetor binário
+int contarUns(vector<int> binario) {
+    int count = 0;
+
+    for (int bit : binario) {
+        if (bit == 1) {
+            count++;
+        }
+    }
+
+    return count;
+}
+
 int main() {
     int numero;
 
@@ -36,12 +49,18 @@ int main() {
     // Chama a função para converter o número em binário
     vector<int> binario = decimalParaBinario(numero);
 
-    // Exibe o resultado
+    // Exibe o resultado da conversão
     cout << "O numero " << numero << " em binario e: ";
     for (int bit : binario) {
         cout << bit;
     }
     cout << endl;
+
+    // Chama a função para contar a quantidade de 1s
+    int quantidadeUns = contarUns(binario);
+
+    // Exibe a quantidade de 1s no número
+    cout << "A quantidade de uns no numero binario e: " << quantidadeUns << endl;
 
     return 0;
 }
