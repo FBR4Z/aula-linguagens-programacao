@@ -3,7 +3,7 @@
 #include <cmath>
 
 // Função para contar o número de "1s" na representação binária de um número decimal
-int contarUnsBinarios(long long numero) {
+int contar_uns_binarios(long long numero) {
     int count = 0;
 
     // Converte o número decimal para sua representação binária e conta os "1s"
@@ -17,38 +17,49 @@ int contarUnsBinarios(long long numero) {
     return count;
 }
 
+// Função para verificar se o método de cálculo para números grandes deve ser usado
+bool usar_metodo_numeros_grandes(long long numero) {
+    // Se o número tiver mais de 12 dígitos, use o método de cálculo para números grandes
+    return (int)log10(numero) >= 12;
+}
+
 int main() {
-    int quantidadeNumeros;
-    std::cout << "Digite a quantidade de numeros a serem testados: ";
-    std::cin >> quantidadeNumeros;
+    int quantidade_numeros;
+    //std::cout << "Digite a quantidade de numeros a serem testados: ";
+    std::cin >> quantidade_numeros;
 
-    std::vector<long long> numeros(quantidadeNumeros);
-    std::vector<int> quantidadeUns(quantidadeNumeros);
+    std::vector<long long> numeros(quantidade_numeros);
+    std::vector<int> quantidade_uns(quantidade_numeros);
 
-    for (int i = 0; i < quantidadeNumeros; ++i) {
-        std::cout << "Digite o " << i + 1 << "o numero: ";
+    for (int i = 0; i < quantidade_numeros; ++i) {
+        //std::cout << "Digite o " << i + 1 << "o numero: ";
         std::cin >> numeros[i];
 
-        // Calcula a quantidade de "1s" no número e armazena no vetor
-        long long decimal = numeros[i];
-        int TAMANHO_PARTE = (int)pow(10, (int)log10(decimal) - 1); // Calcula o tamanho da parte
-        int totalUns = 0;
+        // Verifica se o método de cálculo para números grandes deve ser usado
+        if (usar_metodo_numeros_grandes(numeros[i])) {
+            long long decimal = numeros[i];
+            int TAMANHO_PARTE = (int)pow(10, (int)log10(decimal) - 1); // Calcula o tamanho da parte
+            int total_uns = 0;
 
-        // Converte o número em partes menores e conta os "1s" em cada parte
-        long long parte = 0;
-        while (decimal > 0) {
-            parte = decimal % TAMANHO_PARTE;
-            totalUns += contarUnsBinarios(parte);
-            decimal /= TAMANHO_PARTE;
+            // Converte o número em partes menores e conta os "1s" em cada parte
+            long long parte = 0;
+            while (decimal > 0) {
+                parte = decimal % TAMANHO_PARTE;
+                total_uns += contar_uns_binarios(parte);
+                decimal /= TAMANHO_PARTE;
+            }
+
+            quantidade_uns[i] = total_uns;
+        } else {
+            quantidade_uns[i] = contar_uns_binarios(numeros[i]);
         }
-
-        quantidadeUns[i] = totalUns;
     }
 
     // Exibe a quantidade de "1s" para cada número
-    std::cout << "\nQuantidade de '1s' para cada numero:" << std::endl;
-    for (int i = 0; i < quantidadeNumeros; ++i) {
-        std::cout << "Numero " << i + 1 << ": " << quantidadeUns[i] << std::endl;
+    //std::cout << "\nQuantidade de '1s' para cada numero:" << std::endl;
+    for (int i = 0; i < quantidade_numeros; ++i) {
+        //std::cout << "Numero " << i + 1 << ": " << quantidadeUns[i] << std::endl;
+        std::cout << quantidade_uns[i] << std::endl;
     }
 
     return 0;
