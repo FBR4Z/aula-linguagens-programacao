@@ -3,11 +3,11 @@
 
 using namespace std;
 
-// Fun√ß√£o para converter um n√∫mero inteiro para bin√°rio
-vector<int> decimal_para_binario(int numero) {
-    vector<int> binario;
+// FunÁ„o para converter um n˙mero inteiro para bin·rio
+vector <int> decimal_para_binario(int numero) {
+    vector <int> binario;
 
-    // Caso o n√∫mero seja zero, o bin√°rio ser√° 0
+    // Caso o numero seja zero, o bin·rio ser· 0
     if (numero == 0) {
         binario.push_back(0);
     }
@@ -45,17 +45,20 @@ int main() {
     //Solicita a quantidade de n√∫meros que ser√° contado os 1s
     //cout << "Digite a quantidade de n√∫meros que ser√° feita a opera√ß√£o: ";
     cin >> quantidade_de_numeros;
+    vector <int> armazena_quantide_de_uns;
+    vector <int> armazena_numeros_testados;
 
-    for (unsigned int i = 0; i < quantidade_de_numeros; i++)
+    for (int i = 0; i < quantidade_de_numeros; i++)
     {
         // Solicita ao usu·rio que insira um n˙mero inteiro
         //cout << "Digite um numero inteiro: ";
         cin >> numero;
+        //armazena_numeros_testados.at(i) = numero;
 
         // Chama a funÁ„o para converter o n√∫mero em bin√°rio
-        vector<int> binario = decimal_para_binario(numero);
+        //vector<int> binario = decimal_para_binario(numero);
 
-        // Exibe o resultado da convers√£o
+        // Exibe o resultado da convers„o
         //cout << "O numero " << numero << " em binario e: ";
         /*
             for (int bit : binario) {
@@ -66,15 +69,20 @@ int main() {
         
 
         // Chama a funÁ„o para contar a quantidade de 1s
-        int quantidade_uns = contar_uns(binario);
+        //int quantidade_uns = contar_uns(binario);
 
-        // Exibe a quantidade de 1s no n√∫mero
+        // Exibe a quantidade de 1s no n˙mero
         //cout << "A quantidade de uns no numero binario e: " << quantidadeUns << endl;
-        cout << quantidade_uns;
-        cout << endl;
-
+        //cout << quantidade_uns;
+        //cout << endl;
+        armazena_quantide_de_uns.push_back(contar_uns(decimal_para_binario(numero)));
+        //cout << armazena_quantide_de_uns[i] << endl;
     }
     
+    //cout << armazena_quantide_de_uns[1] << endl;
+    for (int i : armazena_quantide_de_uns) {
+    cout << i << endl;
+        }
     
 
     return 0;
