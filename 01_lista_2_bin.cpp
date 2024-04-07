@@ -4,7 +4,7 @@
 using namespace std;
 
 // Função para converter um número inteiro para binário
-vector<int> decimalParaBinario(int numero) {
+vector<int> decimal_para_binario(int numero) {
     vector<int> binario;
 
     // Caso o número seja zero, o binário será 0
@@ -27,7 +27,7 @@ vector<int> decimalParaBinario(int numero) {
 }
 
 // Função para contar a quantidade de 1s no vetor binário
-int contarUns(vector<int> binario) {
+int contar_uns(vector<int> binario) {
     int count = 0;
 
     for (int bit : binario) {
@@ -40,27 +40,42 @@ int contarUns(vector<int> binario) {
 }
 
 int main() {
-    int numero;
+    unsigned int numero, quantidade_de_numeros;
 
-    // Solicita ao usuário que insira um número inteiro
-    cout << "Digite um numero inteiro: ";
-    cin >> numero;
+    //Solicita a quantidade de números que será contado os 1s
+    //cout << "Digite a quantidade de números que será feita a operação: ";
+    cin >> quantidade_de_numeros;
 
-    // Chama a função para converter o número em binário
-    vector<int> binario = decimalParaBinario(numero);
+    for (unsigned int i = 0; i < quantidade_de_numeros; i++)
+    {
+        // Solicita ao usu�rio que insira um n�mero inteiro
+        //cout << "Digite um numero inteiro: ";
+        cin >> numero;
 
-    // Exibe o resultado da conversão
-    cout << "O numero " << numero << " em binario e: ";
-    for (int bit : binario) {
-        cout << bit;
+        // Chama a fun��o para converter o número em binário
+        vector<int> binario = decimal_para_binario(numero);
+
+        // Exibe o resultado da conversão
+        //cout << "O numero " << numero << " em binario e: ";
+        /*
+            for (int bit : binario) {
+                cout << bit;
+            }
+            cout << endl;
+        */
+        
+
+        // Chama a fun��o para contar a quantidade de 1s
+        int quantidade_uns = contar_uns(binario);
+
+        // Exibe a quantidade de 1s no número
+        //cout << "A quantidade de uns no numero binario e: " << quantidadeUns << endl;
+        cout << quantidade_uns;
+        cout << endl;
+
     }
-    cout << endl;
-
-    // Chama a função para contar a quantidade de 1s
-    int quantidadeUns = contarUns(binario);
-
-    // Exibe a quantidade de 1s no número
-    cout << "A quantidade de uns no numero binario e: " << quantidadeUns << endl;
+    
+    
 
     return 0;
 }
