@@ -15,7 +15,7 @@ int contar_uns_binarios(long long numero) {
 // Função para verificar se o método de cálculo para números grandes deve ser usado
 bool usar_metodo_numeros_grandes(long long numero) {
     // Se o número tiver mais de 12 dígitos, use o método de cálculo para números grandes
-    return (int)log10(numero) >= 12;
+    return (int)std::log10(numero) >= 12;
 }
 
 int main() {
@@ -33,7 +33,10 @@ int main() {
         // Verifica se o método de cálculo para números grandes deve ser usado
         if (usar_metodo_numeros_grandes(numeros[i])) {
             long long decimal = numeros[i];
-            int tamanho_parte = (int)pow(10, (int)log10(decimal) - 1); // Calcula o tamanho da parte
+            int tamanho_parte = 1;
+            while (decimal / tamanho_parte > 10) {
+                tamanho_parte *= 10;
+            }
             int total_uns = 0;
 
             // Converte o número em partes menores e conta os "1s" em cada parte
