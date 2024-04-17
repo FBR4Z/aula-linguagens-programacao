@@ -11,11 +11,27 @@ def entradas(quantidade_de_testes):
     return valores
 
 def teste(numero_de_teste):
+    # for perm in permutations(range(10), 5):
+    #     print(perm)
+    #     if sum(perm) == numero_de_teste:
+    #         return perm
+    # return None
+
+     # Lista para armazenar as permutações válidas
+    solucoes = []
+    
+    # Gerar todas as permutações de dígitos de 0 a 9 sem repetição
     for perm in permutations(range(10), 5):
-        print(perm)
-        if sum(perm) == numero_de_teste:
-            return perm
-    return None
+        # Calcular o valor correspondente à soma de todos os números possíveis
+        valor = int("".join(map(str, perm)))
+        
+        # Verificar se o valor é igual a K
+        if valor == numero_de_teste:
+            # Se for igual, adicionar a permutação à lista de soluções
+            solucoes.append(perm)
+    
+    # Retornar a lista de permutações encontradas
+    return solucoes
     
 
 def main():
@@ -25,13 +41,8 @@ def main():
 
     cont = 0
     for i in vetor_valores:
-
-        if teste(vetor_valores[cont]) == None:
-            print("impossivel")
-        else:
-            print(teste(vetor_valores[cont]))
+        print(teste(vetor_valores[cont]))
         
-        cont += cont
 
 if __name__ == "__main__":
     main()
